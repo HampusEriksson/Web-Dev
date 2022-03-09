@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block content %} {{current_user.id}} {{user.id}}
-<form method="POST">
+{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block content %}
+<form method="POST" enctype="multipart/form-data">
     <h3 align="center">Add card</h3>
     <div class="form-group">
         <label for="name">Name</label>
@@ -9,9 +9,14 @@
         <label for="rarity">Rarity</label>
         <input type="name" class="form-control" id="rarity" name="rarity" placeholder="Enter rarity" />
     </div>
+
     <div class="form-group">
-        <label for="image">Image</label>
-        <input type="file" class="form-control" id="image" name="image" placeholder="Enter image" />
+        <label for="rarity">Price</label>
+        <input type="name" class="form-control" id="price" name="price" placeholder="Enter price" />
+    </div>
+    <div class="form-group">
+        <label for="file">Image</label>
+        <input type="file" class="form-control" id="file" name="file" placeholder="Upload image" />
     </div>
 
     <br />

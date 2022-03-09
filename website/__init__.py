@@ -4,7 +4,7 @@ from os import path
 from flask_login import LoginManager
 
 db = SQLAlchemy()
-DB_NAME = "database.db"
+DB_NAME = "cardsite.db"
 
 
 def create_app():

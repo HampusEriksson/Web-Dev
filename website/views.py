@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .models import Card
 from . import db
 import json
+from base64 import b64encode
 
 views = Blueprint('views', __name__)
 
@@ -18,3 +19,11 @@ def home():
 def mycards():
 
     return render_template("mycards.html", user=current_user)
+
+    
+
+@views.route('/buycards', methods=['GET', 'POST'])
+@login_required
+def buycards():
+
+    return render_template("buycards.html", user=current_user)

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import Card, User
-from werkzeug.security import generate_password_hash, check_password_hash, secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
@@ -55,7 +55,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(
+            new_user = User(email=email, currency = 100, first_name=first_name, password=generate_password_hash(
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
@@ -65,22 +65,29 @@ def sign_up():
 
     return render_template("sign_up.html", user=current_user)
 
+@login_required
 @auth.route('/admin', methods=['GET', 'POST'])
 def admin():
+    if current_user.id != 1:
+        flash('Only admins can add cards', category='error')
     if request.method == 'POST':
+        print(request.form.get('name'))
         name = request.form.get('name')
         rarity = request.form.get('rarity')
-        image = request.files['image']
-        imagename = secure_filename(image.filename)
+        price = request.form.get('rarity')
+        file = request.files['file']
+        
 
         user = Card.query.filter_by(name=name).first()
-        if user:
+        if current_user.id != 1:
+            flash('Only admins can add cards', category='error')
+        elif user:
             flash('Card already exists.', category='error')
         elif len(name) < 2:
             flash('Name must be greater than 1 character.', category='error')
         else:
             
-            new_card = Card(name=name, rarity=rarity,image=pic.read(),user_id=current_user.id )
+            new_card = Card(name=name, rarity=rarity,user_id=current_user.id, price = price, filename=file.filename)
             db.session.add(new_card)
             db.session.commit()
             flash('Card created!', category='success')
