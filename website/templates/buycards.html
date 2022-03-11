@@ -5,13 +5,22 @@
     {% for u in users %}
         <option value="{{u.id}}" SELECTED>{{u.id}}</option>"
     {% endfor %}
-    <option value="all" SELECTED>All</option>"
+    <option value="All" SELECTED>All</option>"
     
 </select>
     <button type="submit" class="btn btn-primary" onclick=ids.submit()>Submit</button>
 </form>
 
-
-{% for card in cards %} {{card.name}} {{card.rarity}}
-
-<img src="static/{{card.filename}}" width="300" height="300"></a>{% endfor %} {% endblock %}
+<div class="container">
+    <div class="row">
+        {% for card in cards %}
+        <div class="col-3">
+            <p>{{card.name}}</p>
+            <p>{{card.rarity}}</p>
+            <p>{{card.price}}$</p>
+            <p><img src="static/{{card.filename}}" class="img-fluid"></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

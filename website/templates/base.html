@@ -20,13 +20,13 @@
             <div class="navbar-nav">
 
                 {% if user.is_authenticated %}
-                <a class="nav-item nav-link" id="home" href="/">Home</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                <a class="nav-item nav-link" id="mycards" href="/mycards">My Cards</a>
-                <a class="nav-item nav-link" id="buycards" href="/buycards">Buy Cards</a> {% else %}
-                <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a> {% endif %} {%if user.id == 1%}
-                <a class="nav-item nav-link" id="admin" href="/admin">Admin</a> {% endif %}
+                <a {% if request.path=="/" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %} id="home" href="/">Home</a>
+                <a {% if request.path=="/logout" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %}id="logout" href="/logout">Logout</a>
+                <a {% if request.path=="/mycards" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %} id="mycards" href="/mycards">My Cards</a>
+                <a {% if request.path=="/buycards" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %} id="buycards" href="/buycards">Buy Cards</a> {% else %}
+                <a {% if request.path=="/login" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %} id="login" href="/login">Login</a>
+                <a {% if request.path=="/sigh-up" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %} id="signUp" href="/sign-up">Sign Up</a> {% endif %} {%if user.id == 1%}
+                <a {% if request.path=="/admin" %} class="active nav-item nav-link" {% else %} class="nav-item nav-link" {% endif %} id="admin" href="/admin">Admin</a> {% endif %}
             </div>
         </div>
     </nav>

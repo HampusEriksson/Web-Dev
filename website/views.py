@@ -28,7 +28,7 @@ def buycards():
     if request.method == 'POST':
         ids = request.form.get('ids')
         print(ids)
-        return render_template("buycards.html", user=current_user, users = User.query.all(),   cards = Card.query.all() if ids == "All" else Card.query.filter_by(user_id = ids))
+        return render_template("buycards.html", user=current_user, users = User.query.all(),  ids=ids, cards = Card.query.all() if ids == "All" else Card.query.filter_by(user_id = ids))
 
     return render_template("buycards.html", user=current_user, users = User.query.all(),  cards = Card.query.all())
 
