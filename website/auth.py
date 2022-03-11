@@ -92,4 +92,4 @@ def admin():
             db.session.commit()
             flash('Card created!', category='success')
 
-    return render_template("admin.html", user=current_user)
+    return render_template("admin.html", user=current_user, cards = Card.query.all())

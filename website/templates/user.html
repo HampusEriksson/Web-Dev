@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}My Cards{% endblock %} {% block content %}
+
+<h1 align="center">{{user.name}}</h1>
+<ul class="list-group list-group-flush" id="cards">
+    {% for card in user.cards %} {{card.name}} {{card.rarity}}
+
+    <img src="static/{{card.filename}}" width="300" height="300"></a>{% endfor %}
+
+
+</ul>{% endblock %}
