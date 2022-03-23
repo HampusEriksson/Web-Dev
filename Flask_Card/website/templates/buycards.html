@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Buy Cards{% endblock %} {% block content %}
+<form action="/buycards" method="POST">
+    <select name="ids">
+    
+    {% for u in users %}
+        <option value="{{u.id}}" SELECTED>{{u.id}}</option>"
+    {% endfor %}
+    <option value="All" SELECTED>All</option>"
+    
+</select>
+    <button type="submit" class="btn btn-primary" onclick=ids.submit()>Submit</button>
+</form>
+
+<div class="container">
+    <div class="row">
+        {% for card in cards %}
+        <div class="col-3">
+            <p>{{card.name}}</p>
+            <p>{{card.rarity}}</p>
+            <p>{{card.price}}$</p>
+            <p><img src="static/{{card.filename}}" class="img-fluid"></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
