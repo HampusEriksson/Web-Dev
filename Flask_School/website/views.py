@@ -15,6 +15,6 @@ def home():
     
 
 @views.route('/<int:param>', methods=['GET', 'POST'])
-def user(param):
+def course(param):
 
-    return render_template("user.html")
+    return render_template("course.html", course = Course.query.filter_by(id=param).first())

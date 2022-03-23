@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %} {% if course == None %}
+
+<p>Ingen kurs med detta id finns i denna databas</p>
+
+{% endif %} {% if course.goals == [] %}
+
+<p>Inga kunskapskrav finns i denna databas</p>
+
+{% endif %}
+<table>
+
+    {% for goal in course.goals %}
+
+    <tr>
+        <th>{{goal.name}}</th>
+        <th>{{goal.e}}</th>
+        <th>{{goal.c}}</th>
+        <th>{{goal.a}}</th>
+    </tr>
+
+
+    {% endfor %}
+</table>
+
+
+
+
+{% endblock %}
